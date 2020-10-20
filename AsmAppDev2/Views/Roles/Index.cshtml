@@ -5,7 +5,7 @@
 
 <h2>Available Roles For Application</h2>
 
-@Html.ActionLink("Create Role", "Create", "Roles")
+@Html.ActionLink("Create Role", "Create", "Roles", null, new { id = "OT", style = "color: Red" })
 
 <style type="text/css">
     #tbrole, .c {
@@ -13,18 +13,14 @@
     }
 </style>
 
-<table id="tbrole">
-    <tr>
-        <td class="c">
-            Role Name
-        </td>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td class="c">
-                @item.Name
-            </td>
-        </tr>
-    }
+<table>
+<tr>
+    <th>Role Name</th>
+</tr>
+@foreach (var item in Model)
+{
+<tr>
+    <td>@item.Name</td>
+</tr>
+}
 </table>

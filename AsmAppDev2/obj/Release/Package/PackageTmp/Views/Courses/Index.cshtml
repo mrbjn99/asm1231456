@@ -7,7 +7,15 @@
 
 @if (User.IsInRole("Staff"))
 {
-	<p>@Html.ActionLink("Create New", "Create")</p>
+	<p>@Html.ActionLink("Create New", "Create", null, new { id = "OT", style = "color: Red" })</p>
+}
+
+@using (Html.BeginForm("Index","Courses", FormMethod.Get))
+{
+<p>
+    Find by name: @Html.TextBox("SearchString")
+    <input type="submit" value="Search" />
+</p>
 }
 <table class="table">
 	<tr>

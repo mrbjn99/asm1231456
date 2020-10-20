@@ -74,5 +74,17 @@ namespace AsmAppDev2.Controllers
 			};
 			return View(trainertopicVM);
 		}
+
+		public ActionResult Delete(int id)
+		{
+			var assignInDb = _context.AssignTrainertoTopics.SingleOrDefault(a => a.ID == id);
+			if (assignInDb == null)
+			{
+				return HttpNotFound();
+			}
+			_context.AssignTrainertoTopics.Remove(assignInDb);
+			_context.SaveChanges();
+			return RedirectToAction("Index", "AssignTrainertoTopics");
+		}
 	}
 }

@@ -221,7 +221,6 @@
     <Compile Include="ViewModels\UserInRoles.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-cerulean.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -231,6 +230,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Image\2.jpg" />
+    <Content Include="Image\3.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\AsmAppDev220201019100006 - Web Deploy.pubxml" />
@@ -257,7 +257,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -308,8 +307,9 @@
     <Content Include="Views\StaffViewModels\Index.cshtml" />
     <Content Include="Views\AssignTrainertoTopics\Index.cshtml" />
     <Content Include="Views\AssignTrainertoTopics\Create.cshtml" />
-    <Content Include="Views\AssignTraineetoCourses\Delete.cshtml" />
     <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\StaffViewModels\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

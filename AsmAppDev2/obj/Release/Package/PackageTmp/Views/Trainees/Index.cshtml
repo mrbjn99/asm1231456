@@ -7,7 +7,7 @@
 
 @if (User.IsInRole("Staff"))
 {
-<p>@Html.ActionLink("create a new trainee account", "Register", "Account")</p>
+<p>@Html.ActionLink("create a new trainee account", "Register", "Account", null, new { id = "OT", style = "color: purple" })</p>
 }
 <table class="table">
 	<tr>

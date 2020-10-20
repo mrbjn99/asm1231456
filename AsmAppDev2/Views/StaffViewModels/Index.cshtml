@@ -1,54 +1,56 @@
 ﻿@model AsmAppDev2.ViewModels.StaffViewModels
 @{
-	ViewBag.Title = "Index";
+    ViewBag.Title = "Index";
 }
-
 <h3>Trainee</h3>
-@Html.ActionLink("Create new trainee account","Register","Account")
+@Html.ActionLink("Create new Trainee Account", "Register", "Account")
 <div class="panel-body">
-	<table class="table table-hover table-bordered table-condensed" id="Index">
-		<thead>
-			<tr>
-				<td><b>UserName</b></td>
-				<td><b>Email</b></td>
-				<td><b>Roles</b></td>
-				<td><b></b></td>
-				<td><b></b></td>
-			</tr>
-		</thead>
-		@foreach (var user in Model.Trainee)
-		{
-			<tr>
-				<td>@user.UserName </td>
-				<td>@user.Email</td>
-				<td>@user.RoleName</td>
-				<td>@Html.ActionLink("Edit", "Edit", "Trainees", new { id = user.UserID }, null)</td>
-				<td>@Html.ActionLink("Delete", "Delete", "Trainers", new { id = user.UserID }, null)</td>
-			</tr>
-		}
-	</table>
+    <table class="table table-hover table-bordered table-condensed" id="Index">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        @foreach (var user in Model.Trainee)
+        {
+            <tr>
+                <td>@user.UserName </td>
+                <td>@user.Email</td>
+                <td>@user.RoleName</td>
+                @if (Request.IsAuthenticated && User.IsInRole("Staff"))
+                {
+                    <td>@Html.ActionLink("Edit", "Edit", new { id = user.UserID }, null)</td>
+                    <td>@Html.ActionLink("Delete", "Delete", new { id = user.UserID }, null)</td>
+                }
+
+            </tr>
+        }
+    </table>
 </div>
 <h3>Trainer</h3>
 <div class="panel-body">
-	<table class="table table-hover table-bordered table-condensed" id="Index">
-		<thead>
-			<tr>
-				<td><b>Username</b></td>
-				<td><b>Email</b></td>
-				<td><b>Roles</b></td>
-				<td><b></b></td>
-				<td><b></b></td>
-			</tr>
-		</thead>
-		@foreach (var user in Model.Trainer)
-		{
-			<tr>
-				<td>@user.UserName </td>
-				<td> @user.Email</td>
-				<td> @user.RoleName</td>
-				<td>@Html.ActionLink("Edit", "Edit", "Trainers", new { id = user.UserID }, null)</td>
-				<td>@Html.ActionLink("Delete", "Delete", "Trainers", new { id = user.UserID }, null)</td>
-			</tr>
-		}
-	</table>
+    <table class="table table-hover table-bordered table-condensed" id="Index">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        @foreach (var user in Model.Trainer)
+        {
+            <tr>
+                <td>@user.UserName </td>
+                <td> @user.Email</td>
+                <td> @user.RoleName</td>
+                <td>@Html.ActionLink("Edit", "Edit", new { id = user.UserID }, null)</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = user.UserID }, null)</td>
+
+            </tr>
+        }
+    </table>
 </div>
+
+@Html.ActionLink("Back to home", "Index", "Home")

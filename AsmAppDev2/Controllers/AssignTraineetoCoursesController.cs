@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity;
 using AsmAppDev2.ViewModels;
+using System.Net;
 
 namespace AsmAppDev2.Controllers
 {
@@ -50,7 +51,7 @@ namespace AsmAppDev2.Controllers
 			};
 			return View(traineecourseVM);
 		}
-		
+
 		//Post: Assign Trainee Course
 		[HttpPost]
 		public ActionResult Create(AssignTraineetoCourseViewModels assign)
@@ -76,22 +77,16 @@ namespace AsmAppDev2.Controllers
 			return View(traineecourseVM);
 		}
 
-		//public ActionResult Delete (AssignTraineetoCourse assign)
-		//{
-		//	var assignInDb = _context.AssignTraineetoCourses.Find(assign.Trainee);
-		//	if (assignInDb == null)
-		//	{
-		//		return View(assign);
-		//	}
-		//	if (ModelState.IsValid)
-		//	{
-		//		assignInDb.Course = assign.Course;
-		//		assignInDb.Trainee = assign.Trainee;
-		//		_context.AssignTraineetoCourses.Remove(assignInDb);
-		//		_context.SaveChanges();
-		//		return RedirectToAction("Index");
-		//	}
-		////	return View(assign);
-		//}
+		public ActionResult Delete(int id)
+		{
+			var assignInDb = _context.AssignTraineetoCourses.SingleOrDefault(a => a.ID == id);
+			if (assignInDb == null)
+			{
+				return HttpNotFound();
+			}
+			_context.AssignTraineetoCourses.Remove(assignInDb);
+			_context.SaveChanges();
+			return RedirectToAction("Index", "AssignTraineetoCourses");
+		}
 	}
 }

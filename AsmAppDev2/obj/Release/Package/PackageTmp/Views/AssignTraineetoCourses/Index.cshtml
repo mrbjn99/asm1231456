@@ -1,26 +1,45 @@
 ﻿@model IEnumerable<AsmAppDev2.Models.AssignTraineetoCourse>
 @{
-	ViewBag.Title = "Index";
+    ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Trainee Course</h2>
 @if (User.IsInRole("Staff"))
 {
-<p>@Html.ActionLink("Assign Trainee to Course", "Create")</p>
+    <p>@Html.ActionLink("Assign Trainee to Course", "Create")</p>
+
+    <table class="table">
+        <tr>
+            <th>Trainee</th>
+            <th>Course</th>
+        </tr>
+
+        @foreach (var assign in Model)
+        {
+            <tr>
+                <td>@assign.Trainee.Email</td>
+                <td>@assign.Course.Name_Course</td>
+
+                <td>@Html.ActionLink("Delete", "Delete", new { id = assign.ID })</td>
+            </tr>
+        }
+    </table>
 }
-<table class="table">
-	<tr>
-		<th>Trainee</th>
-		<th>Course</th>
-	</tr>
+@if (User.IsInRole("Trainee"))
+{
+    <table class="table">
+        <tr>
+            <th>Trainee</th>
+            <th>Courses</th>
+        </tr>
 
-	@foreach (var assign in Model)
-	{
-<tr>
-	<td>@assign.Trainee.UserName</td>
-	<td>@assign.Course.Name_Course</td>
-
-	<td>@Html.ActionLink("Delete", "Delete", new { id = assign.Trainee.UserName })</td>
-</tr>
-	}
-</table>
+        @foreach (var assign in Model)
+        {
+            <tr>
+                <td>@assign.Trainee</td>
+                <td>@assign.Course.Name_Course</td>
+            </tr>
+        }
+    </table>
+}
+@Html.ActionLink("Back to home", "Index", "Home")

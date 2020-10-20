@@ -6,7 +6,7 @@
 <h2>Categories</h2>
 @if (User.IsInRole("Staff"))
 {
-	<p>@Html.ActionLink("Create New Category", "Create")</p>
+	<p>@Html.ActionLink("Create New Category", "Create", null, new { id = "OT", style = "color: Red" })</p>
 }
 <table class="table">
 	<tr>

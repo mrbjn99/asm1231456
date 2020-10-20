@@ -7,7 +7,7 @@
 <h2>Index</h2>
 @if (User.IsInRole("Admin"))
 {
-<p>@Html.ActionLink("Create a new Trainer account", "Register", "Account")</p>
+<p>@Html.ActionLink("Create a new Trainer account", "Register", "Account", null, new { id = "OT", style = "color: purple" })</p>
 }
 <table class="table">
 	<tr>

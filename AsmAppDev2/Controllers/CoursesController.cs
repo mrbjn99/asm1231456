@@ -13,17 +13,17 @@ namespace AsmAppDev2.Controllers
 	{
 		private ApplicationDbContext db = new ApplicationDbContext();
 		// GET: Courses
-		public ActionResult Index(string searchCourse)
+		public ActionResult Index(string searchString)
 		{
 			var courses = db.Courses
 			.Include(c => c.Category)
 			.Include(c => c.Topic);
-			if (!String.IsNullOrEmpty(searchCourse))
+			if (!String.IsNullOrEmpty(searchString))
 			{
 				courses = courses.Where(c =>
-				c.Name_Course.Contains(searchCourse) |
-				c.Category.Name_Category.Contains(searchCourse) |
-				c.Topic.Name_Topic.Contains(searchCourse));
+				c.Name_Course.Contains(searchString) ||
+				c.Category.Name_Category.Contains(searchString) ||
+				c.Topic.Name_Topic.Contains(searchString));
 			}	
 			return View(courses);
 		}
