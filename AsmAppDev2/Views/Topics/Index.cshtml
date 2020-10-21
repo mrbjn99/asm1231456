@@ -6,26 +6,29 @@
 <h2>Index</h2>
 @if (User.IsInRole("Staff"))
 {
-    <p>@Html.ActionLink("Create New Topic", "Create")</p>
+    <p>@Html.ActionLink("Create New Topic", "Create", null, new { id = "OT", style = "color: Red" })</p>
 }
-<table class="table">
-    <tr>
-        <th>Name_Topic</th>
-        <th>Description</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
+<div class="panel-body">
+    <table class="table table-hover table-bordered table-condensed" id="Index">
+        <thead>
+            <tr>
+                <th>Name_Topic</th>
+                <th>Description</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
 
-    @foreach (var topic in Model)
-    {
-        <tr>
-            <td>@topic.Name_Topic</td>
-            <td>@topic.Description</td>
-            @if (User.IsInRole("Staff"))
+            @foreach (var topic in Model)
             {
-                <td>@Html.ActionLink("Edit", "Edit", new { Id = topic.ID })</td>
-                <td>@Html.ActionLink("Delete", "Delete", new { Id = topic.ID })</td>
+                <tr>
+                    <td>@topic.Name_Topic</td>
+                    <td>@topic.Description</td>
+                    @if (User.IsInRole("Staff"))
+                    {
+                        <td>@Html.ActionLink("Edit", "Edit", new { Id = topic.ID })</td>
+                        <td>@Html.ActionLink("Delete", "Delete", new { Id = topic.ID })</td>
+                    }
+                </tr>
             }
-        </tr>
-    }
-</table>
+    </table>
+</div>

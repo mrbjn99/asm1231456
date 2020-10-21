@@ -6,40 +6,46 @@
 <h2>Trainee Course</h2>
 @if (User.IsInRole("Staff"))
 {
-    <p>@Html.ActionLink("Assign Trainee to Course", "Create")</p>
+    <p>@Html.ActionLink("Assign Trainee to Course", "Create", null, new { id = "OT", style = "color: Red" })</p>
 
-    <table class="table">
-        <tr>
-            <th>Trainee</th>
-            <th>Course</th>
-            <th>Delete</th>
-        </tr>
+    <div class="panel-body">
+        <table class="table table-hover table-bordered table-condensed" id="Index">
+            <thead>
+                <tr>
+                    <th>Trainee</th>
+                    <th>Course</th>
+                    <th>Delete</th>
+                </tr>
 
-        @foreach (var assign in Model)
-        {
-            <tr>
-                <td>@assign.Trainee.Email</td>
-                <td>@assign.Course.Name_Course</td>
-                <td>@Html.ActionLink("Delete", "Delete", new { id = assign.ID })</td>
-            </tr>
+                @foreach (var assign in Model)
+                {
+                    <tr>
+                        <td>@assign.Trainee.Email</td>
+                        <td>@assign.Course.Name_Course</td>
+                        <td>@Html.ActionLink("Delete", "Delete", new { id = assign.ID })</td>
+                    </tr>
+                }
+        </table>
+    </div>
         }
-    </table>
-}
-@if (User.IsInRole("Trainee"))
-{
-    <table class="table">
-        <tr>
-            <th>Trainee</th>
-            <th>Courses</th>
-        </tr>
-
-        @foreach (var assign in Model)
+        @if (User.IsInRole("Trainee"))
         {
+<div class="panel-body">
+    <table class="table table-hover table-bordered table-condensed" id="Index">
+        <thead>
             <tr>
-                <td>@assign.Trainee</td>
-                <td>@assign.Course.Name_Course</td>
+                <th>Trainee</th>
+                <th>Courses</th>
             </tr>
-        }
+
+            @foreach (var assign in Model)
+            {
+                <tr>
+                    <td>@assign.Trainee</td>
+                    <td>@assign.Course.Name_Course</td>
+                </tr>
+            }
     </table>
-}
-@Html.ActionLink("Back to home", "Index", "Home")
+</div>
+    }
+    @Html.ActionLink("Back to home", "Index", "Home")

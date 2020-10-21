@@ -17,30 +17,31 @@
     <input type="submit" value="Search" />
 </p>
 }
-<table class="table">
-	<tr>
-		<th>Name Course</th>
+<div class="panel-body">
+    <table class="table table-hover table-bordered table-condensed" id="Index">
+        <thead>
+            <tr>
+                <th>Name Course</th>
+                <th>Name Category</th>
+                <th>Name Topic</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
 
-		<th>Name Category</th>
-
-		<th>Name Topic</th>
-		<th>Edit</th>
-		<th>Delete</th>
-	</tr>
-
-	@foreach (var courses in Model)
-	{
-		<tr>
-			<td>@courses.Name_Course</td>
-			<td>@courses.Category.Name_Category</td>
-			<td>@courses.Topic.Name_Topic</td>
-			@if (User.IsInRole("Staff"))
-			{
-				<td>@Html.ActionLink("Edit", "Edit", new { id = courses.ID })</td>
-				<td>@Html.ActionLink("Delete", "Delete", new { id = courses.ID })</td>
-			}
-		</tr>
-	}
+            @foreach (var courses in Model)
+            {
+                <tr>
+                    <td>@courses.Name_Course</td>
+                    <td>@courses.Category.Name_Category</td>
+                    <td>@courses.Topic.Name_Topic</td>
+                    @if (User.IsInRole("Staff"))
+                    {
+                        <td>@Html.ActionLink("Edit", "Edit", new { id = courses.ID })</td>
+                        <td>@Html.ActionLink("Delete", "Delete", new { id = courses.ID })</td>
+                    }
+                </tr>
+            }
 
 
-</table>
+    </table>
+</div>

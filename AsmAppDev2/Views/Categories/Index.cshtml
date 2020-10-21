@@ -8,25 +8,28 @@
 {
 	<p>@Html.ActionLink("Create New Category", "Create", null, new { id = "OT", style = "color: Red" })</p>
 }
-<table class="table">
-	<tr>
-		<th>Name Category</th>
-		<th>Description</th>
-		<th>Edit</th>
-		<th>Delete</th>
-	</tr>
+<div class="panel-body">
+    <table class="table table-hover table-bordered table-condensed" id="Index">
+        <thead>
+            <tr>
+                <th>Name Category</th>
+                <th>Description</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
 
-	@foreach (var category in Model)
-	{
-<tr>
-	<td>@category.Name_Category</td>
-	<td>@category.Description</td>
+            @foreach (var category in Model)
+            {
+                <tr>
+                    <td>@category.Name_Category</td>
+                    <td>@category.Description</td>
 
-	@if (User.IsInRole("Staff"))
-	{
-		<td>@Html.ActionLink("Edit", "Edit", new { id = category.ID })</td>
-		<td>@Html.ActionLink("Delete", "Delete", new { id = category.ID })</td>
-	}
-</tr>
-	}
-</table>
+                    @if (User.IsInRole("Staff"))
+                    {
+                        <td>@Html.ActionLink("Edit", "Edit", new { id = category.ID })</td>
+                        <td>@Html.ActionLink("Delete", "Delete", new { id = category.ID })</td>
+                    }
+                </tr>
+            }
+    </table>
+</div>
