@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Topic</h2>
 @if (User.IsInRole("Staff"))
 {
     <p>@Html.ActionLink("Create New Topic", "Create", null, new { id = "OT", style = "color: Red" })</p>
