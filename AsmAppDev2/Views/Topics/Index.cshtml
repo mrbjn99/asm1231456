@@ -14,8 +14,11 @@
             <tr>
                 <th>Name_Topic</th>
                 <th>Description</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                @if (User.IsInRole("Staff"))
+                {
+                    <th>Edit</th>
+                    <th>Delete</th>
+                }
             </tr>
 
             @foreach (var topic in Model)
