@@ -30,8 +30,6 @@
 }
 @if (User.IsInRole("Trainer"))
 {
-    <p>@Html.ActionLink("Assign Trainer to Topic", "Create")</p>
-
     <table class="table">
         <tr>
             <th>Topic</th>
@@ -41,9 +39,6 @@
         {
             <tr>
                 <td>@assign.Topic.Name_Topic</td>
-
-                @*<td>@Html.ActionLink("Edit", "Edit", new { id = assign.ID })</td>*@
-                <td>@Html.ActionLink("Delete", "Delete", new { id = assign.ID })</td>
             </tr>
         }
     </table>
