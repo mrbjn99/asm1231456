@@ -40,13 +40,10 @@
                     }
                     @if (Request.IsAuthenticated && User.IsInRole("Trainee"))
                     {
-                        <li>@Html.ActionLink("Course", "Index", "Courses")</li>
-                        <li>@Html.ActionLink("Category", "Index", "Categories")</li>
                         <li>@Html.ActionLink("Trainee Course", "Index", "AssignTraineetoCourses")</li>
                     }
                     @if (Request.IsAuthenticated && User.IsInRole("Trainer"))
                     {
-                        <li>@Html.ActionLink("Topic", "Index", "Topics")</li>
                         <li>@Html.ActionLink("Trainer Topic", "Index", "AssignTrainertoTopics")</li>
                     }
                 </ul>

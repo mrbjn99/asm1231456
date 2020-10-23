@@ -46,7 +46,6 @@
                     }
                     @if (Request.IsAuthenticated && User.IsInRole("Trainer"))
                     {
-                        <li>@Html.ActionLink("Topic", "Index", "Topics")</li>
                         <li>@Html.ActionLink("Trainer Topic", "Index", "AssignTrainertoTopics")</li>
                     }
                 </ul>

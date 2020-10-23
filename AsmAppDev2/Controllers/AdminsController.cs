@@ -19,27 +19,34 @@ namespace AsmAppDev2.Controllers
         //Get: Manage user
         public ActionResult Index()
         {
-            var usersWithRoles = (from user in _context.Users  
-                                  select new  
-                                  {  
-                                      UserId = user.Id,                                        
-                                      Username = user.UserName,  
-                                      EmailAddress = user.Email,  
-                                      RoleNames = (from userRole in user.Roles  
-                                                   join role in _context.Roles on userRole.RoleId   
-                                                   equals role.Id  
-                                                   select role.Name).ToList()  
-                                  }).ToList().Select(u => new UserInRoles()  
-   
-                                  {  
-                                      UserId = u.UserId,  
-                                      Username = u.Username,  
-                                      Email = u.EmailAddress,  
-                                      Role = string.Join(",", u.RoleNames)  
-                                  });  
-   
-   
-            return View(usersWithRoles);  
+            var userInfor = (from user in _context.Users
+                             select new
+                             /*FROM-IN: xác định nguồn dữ liệu truy vấn (Users). 
+                             Nguồn dữ liệu tập hợp những phần tử thuộc kiểu lớp triển khai giao diện IEnumrable*/
+                             /*SELECT: chỉ ra các dữ liệu được xuất ra từ nguồn */
+                             {
+                                 UserId = user.Id,
+                                 Username = user.UserName,
+                                 Emailaddress = user.Email,
+                                 RoleName = (from userRole in user.Roles
+                                                 //JOIN kết hợp 2 trường dữ liệu tương ứng
+                                             join role in _context.Roles //JOIN-IN: chỉ ra nguồn kết nối vs nguồn của FROM   
+                                             on userRole.RoleId          //ON: chỉ ra sự ràng buộc giữa các phần tử  
+                                             equals role.Id              //EQUALS: chỉ ra căn cứ vs ràng buộc (userRole.RoleId ~~ role.Id)
+                                             select role.Name).ToList()
+                             }
+                             ).ToList().Select(p => new UserInRoles()
+                             {
+                                 UserId = p.UserId,
+                                 Username = p.Username,
+                                 Email = p.Emailaddress,
+                                 Role = string.Join(",", p.RoleName)  //Lúc review nhớ hỏi thầy vì răn dùng cái ni 
+
+                             }
+                                                );
+
+
+            return View(userInfor);
         }
 
         //Delete admin role
@@ -92,5 +99,4 @@ namespace AsmAppDev2.Controllers
             return RedirectToAction("Index");
         }
     }
-    
 }
